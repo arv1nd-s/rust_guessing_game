@@ -1,4 +1,6 @@
 use std::io;
+use std::cmp::Ordering;
+use rand::Rng;
 
 fn main() {
     println!("Guess the number!");
@@ -20,10 +22,10 @@ fn main() {
             .expect("Failed to read line");
         
         // shadowing
-        let guess: u32 = match.guess.trim().parse() {
+        let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => continue
-        }
+        };
 
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
