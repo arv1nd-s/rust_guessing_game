@@ -19,5 +19,19 @@ fn main() {
             .read_line(&mut guess)
             .expect("Failed to read line");
         
+        // shadowing
+        let guess: u32 = match.guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue
+        }
+
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win!");
+                break;
+            }
+        }
     }
 }
